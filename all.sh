@@ -1,6 +1,6 @@
-sudo apt update
-sudo apt install python3-pip
-sudo apt install python-is-python3
+sudo apt update -y
+sudo apt install python3-pip -y
+sudo apt install python-is-python3 -y
 ./0_install_conda.sh
 ./1_clone_gsplat.sh
 ./2_install_plyfile.sh
@@ -16,6 +16,9 @@ conda activate gaussian_splatting
 
 . ../6_run_training.sh
 . ../7_rendeer.sh
+
+sudo apt install ffmpeg -y
+. ../8_generate_video.sh
 
 
 # export PATH="/root/miniconda/bin:$PATH" #everytime after reboot
