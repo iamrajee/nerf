@@ -1,1 +1,1 @@
-python render.py -m *
+python render.py -m $pwd
