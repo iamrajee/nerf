@@ -1,3 +1,4 @@
+sudo apt update
 sudo apt install python3-pip
 sudo apt install python-is-python3
 ./0_install_conda.sh
