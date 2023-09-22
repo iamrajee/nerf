@@ -15,6 +15,7 @@ conda env create --file environment.yml
 conda activate gaussian_splatting
 
 . ../6_run_training.sh
+. ../7_rendeer.sh
 
 
 # export PATH="/root/miniconda/bin:$PATH" #everytime after reboot
