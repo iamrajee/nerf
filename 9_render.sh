@@ -1,1 +1,1 @@
-!python render.py -m output/*
+python render.py -m *
