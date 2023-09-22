@@ -1,4 +1,5 @@
 sudo apt install python3-pip
+sudo apt install python-is-python3
 ./0_install_conda.sh
 ./1_clone_gsplat.sh
 ./2_install_plyfile.sh
