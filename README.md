@@ -6,3 +6,4 @@ chmod +x *.sh
 # Download results
 export public-ip=[YOUR-VM-PUBLIC-IP]
 scp -r root@$public-ip:/root/nerf/gaussian-splatting/output ~/local_download_folder
+scp -r root@$public-ip:/root/nerf/*.mp4 ~/local_download_folder
