@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo "============================== START ============================="
 echo "$(date|awk '{print $4}')" "parameter_reading" >> log.txt
 video_url="${1:-https://drive.google.com/file/d/1Ppf5Y0_0_K_yM5LVeYnI1ZHKxzD-2VKQ/view?usp=sharing}"
