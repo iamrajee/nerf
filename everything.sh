@@ -52,6 +52,8 @@ echo "$(date|awk '{print $4}')" "training" >> log.txt
 export OAR_JOB_ID=$project_name #may not work
 #OAR_JOB_ID=project_name #may not work
 #python3 -c "import os; os.environ['OAR_JOB_ID'] =str('$project_name'); print('OAR_JOB_ID worked: ' + os.environ['OAR_JOB_ID'])"
+source ~/.bashrc
+conda activate gaussian_splatting
 python3 train.py -s data/$project_name/ --iterations $iter
 output_folder=$project_name #if not then: output_folder="*"
 
