@@ -23,18 +23,18 @@ pip install -q plyfile
 echo "$(date|awk '{print $4}')" "cd_gsplatting" >> log.txt 
 cd gaussian-splatting
 
-echo "$(date|awk '{print $4}')" "configure_conda" >> log.txt 
+echo "$(date|awk '{print $4}')" "configure_conda" >> ../log.txt 
 export PATH="/root/miniconda/bin:$PATH"
 conda init bash
 source ~/.bashrc
 conda env create --file environment.yml -y
 conda activate gaussian_splatting
 
-echo "$(date|awk '{print $4}')" "install_dgr_knn_whl" >> log.txt 
+echo "$(date|awk '{print $4}')" "install_dgr_knn_whl" >> ../log.txt 
 pip install https://huggingface.co/camenduru/gaussian-splatting/resolve/main/diff_gaussian_rasterization-0.0.0-cp310-cp310-linux_x86_64.whl
 pip install https://huggingface.co/camenduru/gaussian-splatting/resolve/main/simple_knn-0.0.0-cp310-cp310-linux_x86_64.whl
 
-echo "$(date|awk '{print $4}')" "data_prep" >> log.txt
+echo "$(date|awk '{print $4}')" "data_prep" >> ../log.txt
 sudo apt install colmap  -y
 mkdir -p data/$project_name/input
 sudo apt install ffmpeg -y
@@ -48,7 +48,7 @@ cd ../../../
 ffmpeg -i data/$project_name/input/* -qscale:v 1 -qmin 1 -vf fps=$fps data/$project_name/input/%04d.jpg -y
 python3 convert.py -s data/$project_name/ --no_gpu 
 
-echo "$(date|awk '{print $4}')" "training" >> log.txt
+echo "$(date|awk '{print $4}')" "training" >> ../log.txt
 export OAR_JOB_ID=$project_name #may not work
 #OAR_JOB_ID=project_name #may not work
 #python3 -c "import os; os.environ['OAR_JOB_ID'] =str('$project_name'); print('OAR_JOB_ID worked: ' + os.environ['OAR_JOB_ID'])"
@@ -57,14 +57,14 @@ conda activate gaussian_splatting
 python3 train.py -s data/$project_name/ --iterations $iter
 output_folder=$project_name #if not then: output_folder="*"
 
-echo "$(date|awk '{print $4}')" "render" >> log.txt
+echo "$(date|awk '{print $4}')" "render" >> ../log.txt
 python3 render.py -m output/$output_folder
 
-echo "$(date|awk '{print $4}')" "generate rendered video" >> log.txt
+echo "$(date|awk '{print $4}')" "generate rendered video" >> ../log.txt
 ffmpeg -framerate $save_fps -i output/$output_folder/train/ours_$iter/renders/%05d.png -vf "pad=ceil(iw/2)*2:ceil(ih/2)*2" -c:v libx264 -r 3 -pix_fmt yuv420p output/$output_folder/renders.mp4 -y
 ffmpeg -framerate $save_fps -i output/$output_folder/train/ours_$iter/gt/%05d.png -vf "pad=ceil(iw/2)*2:ceil(ih/2)*2" -c:v libx264 -r 3 -pix_fmt yuv420p output/$output_folder/gt.mp4 -y
 
-echo "$(date|awk '{print $4}')" "process complete you may download the result by runing scp in local host" >> log.txt
+echo "$(date|awk '{print $4}')" "process complete you may download the result by runing scp in local host" >> ../log.txt
 echo "============================== END ============================="
 echo 'public_ip=[YOUR-VM-PUBLIC-IP]'
 echo 'local_download_folder="."'
