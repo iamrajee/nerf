@@ -3,7 +3,7 @@ echo "$(date|awk '{print $4}')" "parameter_reading" >> log.txt
 video_url="${1:-https://drive.google.com/file/d/1Ppf5Y0_0_K_yM5LVeYnI1ZHKxzD-2VKQ/view?usp=sharing}"
 iter="${2:-30000}"
 fps="${3:-3}"
-save_fps="${3:-3}"
+save_fps="${4:-3}"
 video_name="${5:-test}" #doubt, dynamic?
 project_name="${6:-$video_name}"
 
