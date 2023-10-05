@@ -45,7 +45,7 @@ sudo apt upgrade -y
 cd data/$project_name/input
 yt-dlp $video_url
 cd ../../../
-ffmpeg -i data/$project_name/input/* -qscale:v 1 -qmin 1 -vf fps=$fps data/$project_name/input/%04d.jpg
+ffmpeg -i data/$project_name/input/* -qscale:v 1 -qmin 1 -vf fps=$fps data/$project_name/input/%04d.jpg -y
 python3 convert.py -s data/$project_name/ --no_gpu 
 
 echo "$(date|awk '{print $4}')" "training" >> log.txt
