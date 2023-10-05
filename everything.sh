@@ -7,6 +7,7 @@ save_fps="${4:-3}"
 video_name="${5:-test}" #doubt, dynamic?
 project_name="${6:-$video_name}"
 
+echo "============================== Update ============================="
 echo "$(date|awk '{print $4}')" "update_and_install_conda_python" > log.txt
 sudo apt update -y
 sudo apt install python3-pip -y
@@ -14,12 +15,15 @@ sudo apt install python-is-python3 -y
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh
 bash ~/miniconda.sh -b -p $HOME/miniconda
 
+echo "============================== Clone ============================="
 echo "$(date|awk '{print $4}')" "clone_gsplat" >> log.txt
 git clone https://github.com/graphdeco-inria/gaussian-splatting --recursive
 
+echo "============================== plyfile ============================="
 echo "$(date|awk '{print $4}')" "install_plyfile" >> log.txt 
 pip install -q plyfile
 
+echo "============================== CD ============================="
 echo "$(date|awk '{print $4}')" "cd_gsplatting" >> log.txt 
 cd gaussian-splatting
 
@@ -30,10 +34,12 @@ source ~/.bashrc
 conda env create --file environment.yml -y
 conda activate gaussian_splatting
 
+echo "============================== WHL ============================="
 echo "$(date|awk '{print $4}')" "install_dgr_knn_whl" >> ../log.txt 
 pip install https://huggingface.co/camenduru/gaussian-splatting/resolve/main/diff_gaussian_rasterization-0.0.0-cp310-cp310-linux_x86_64.whl
 pip install https://huggingface.co/camenduru/gaussian-splatting/resolve/main/simple_knn-0.0.0-cp310-cp310-linux_x86_64.whl
 
+echo "============================== DATA Prep ============================="
 echo "$(date|awk '{print $4}')" "data_prep" >> ../log.txt
 sudo apt install colmap  -y
 mkdir -p data/$project_name/input
@@ -48,6 +54,7 @@ cd ../../../
 ffmpeg -i data/$project_name/input/* -qscale:v 1 -qmin 1 -vf fps=$fps data/$project_name/input/%04d.jpg -y
 python3 convert.py -s data/$project_name/ --no_gpu 
 
+echo "============================== TRAIN ============================="
 echo "$(date|awk '{print $4}')" "training" >> ../log.txt
 export OAR_JOB_ID=$project_name #may not work
 #OAR_JOB_ID=project_name #may not work
@@ -57,6 +64,7 @@ conda activate gaussian_splatting
 python3 train.py -s data/$project_name/ --iterations $iter
 output_folder=$project_name #if not then: output_folder="*"
 
+echo "============================== RENDER ============================="
 echo "$(date|awk '{print $4}')" "render" >> ../log.txt
 python3 render.py -m output/$output_folder
 
