@@ -64,10 +64,10 @@ ffmpeg -framerate $save_fps -i output/$output_folder/train/ours_$iter/gt/%05d.pn
 
 echo "$(date|awk '{print $4}')" "process complete you may download the result by runing scp in local host" >> log.txt
 echo "============================== END ============================="
-echo 'public-ip=[YOUR-VM-PUBLIC-IP]'
+echo 'public_ip=[YOUR-VM-PUBLIC-IP]'
 echo 'local_download_folder="."'
-echo 'scp -r root@$public-ip:/root/nerf/gaussian-splatting/output $local_download_folder #for downloading everything'
-echo 'scp -r root@$public-ip:/root/nerf/gaussian-splatting/output/point_cloud/iteration_$iter/point_cloud.ply $local_download_folder'
-echo 'scp -r root@$public-ip:/root/nerf/gaussian-splatting/output/renders.mp4 $local_download_folder'
-echo 'scp -r root@$public-ip:/root/nerf/gaussian-splatting/output/gt.mp4 $local_download_folder'
-#echo 'scp -r root@$public-ip:'"$(pwd)"'/output/gt.mp4 $local_download_folder'
+echo 'scp -r root@$public_ip:/root/nerf/gaussian-splatting/output $local_download_folder #for downloading everything'
+echo 'scp -r root@$public_ip:/root/nerf/gaussian-splatting/output/point_cloud/iteration_$iter/point_cloud.ply $local_download_folder'
+echo 'scp -r root@$public_ip:/root/nerf/gaussian-splatting/output/renders.mp4 $local_download_folder'
+echo 'scp -r root@$public_ip:/root/nerf/gaussian-splatting/output/gt.mp4 $local_download_folder'
+#echo 'scp -r root@$public_ip:'"$(pwd)"'/output/gt.mp4 $local_download_folder'
