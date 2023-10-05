@@ -81,5 +81,5 @@ echo 'scp -r root@$public_ip:/root/nerf/gaussian-splatting/output/point_cloud/it
 echo 'scp -r root@$public_ip:/root/nerf/gaussian-splatting/output/renders.mp4 $local_download_folder'
 echo 'scp -r root@$public_ip:/root/nerf/gaussian-splatting/output/gt.mp4 $local_download_folder'
 #echo 'scp -r root@$public_ip:'"$(pwd)"'/output/gt.mp4 $local_download_folder'
-echo "------------------------------------------------------------------------------------------------"
+echo -e "\n\n------------------------------------------------------------------------------------------------\n\n\a"
 cat ../log.txt
