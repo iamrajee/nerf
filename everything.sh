@@ -27,7 +27,7 @@ echo "$(date|awk '{print $4}')" "configure_conda" >> log.txt
 export PATH="/root/miniconda/bin:$PATH"
 conda init bash
 source ~/.bashrc
-conda env create --file environment.yml
+conda env create --file environment.yml -y
 conda activate gaussian_splatting
 
 echo "$(date|awk '{print $4}')" "install_dgr_knn_whl" >> log.txt 
@@ -38,10 +38,10 @@ echo "$(date|awk '{print $4}')" "data_prep" >> log.txt
 sudo apt install colmap  -y
 mkdir -p data/$project_name/input
 sudo apt install ffmpeg -y
-conda update ffmpeg
+conda update ffmpeg -y
 sudo apt install yt-dlp -y
-sudo apt update
-sudo apt upgrade
+sudo apt update -y
+sudo apt upgrade -y
 cd data/$project_name/input
 yt-dlp $video_url
 cd ../../../
