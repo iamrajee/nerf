@@ -70,3 +70,4 @@ echo 'scp -r root@$public-ip:/root/nerf/gaussian-splatting/output $local_downloa
 echo 'scp -r root@$public-ip:/root/nerf/gaussian-splatting/output/point_cloud/iteration_$iter/point_cloud.ply $local_download_folder'
 echo 'scp -r root@$public-ip:/root/nerf/gaussian-splatting/output/renders.mp4 $local_download_folder'
 echo 'scp -r root@$public-ip:/root/nerf/gaussian-splatting/output/gt.mp4 $local_download_folder'
+#echo 'scp -r root@$public-ip:'"$(pwd)"'/output/gt.mp4 $local_download_folder'
