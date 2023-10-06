@@ -70,6 +70,7 @@ echo "============================== RENDER ============================="
 echo "$(date|awk '{print $4}')" "render" >> ../log.txt
 python3 render.py -m output/$output_folder
 
+echo "============================== Genrate Video ============================="
 echo "$(date|awk '{print $4}')" "generate rendered video" >> ../log.txt
 ffmpeg -framerate $save_fps -i output/$output_folder/train/ours_$iter/renders/%05d.png -vf "pad=ceil(iw/2)*2:ceil(ih/2)*2" -c:v libx264 -r 3 -pix_fmt yuv420p output/$output_folder/renders.mp4 -y
 ffmpeg -framerate $save_fps -i output/$output_folder/train/ours_$iter/gt/%05d.png -vf "pad=ceil(iw/2)*2:ceil(ih/2)*2" -c:v libx264 -r 3 -pix_fmt yuv420p output/$output_folder/gt.mp4 -y
