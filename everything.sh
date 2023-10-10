@@ -32,7 +32,7 @@ cd gaussian-splatting
 echo "$(date|awk '{print $4}')" "configure_conda" >> ../log.txt 
 export PATH="/root/miniconda/bin:$PATH"
 conda init bash
-source ~/.bashrc
+eval "$(cat ~/.bashrc | tail -n +10)" #source ~/.bashrc
 conda env create --file environment.yml -y
 conda activate gaussian_splatting
 
